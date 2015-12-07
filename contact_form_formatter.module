@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_preprocess_field().
+ *
+ * Change contact form entity reference field's label to be the title of the
+ * form.
+ */
+function contact_form_formatter_preprocess_field(&$variables, $hook) {
+  if (!empty($variables['element']['#formatter']) && $variables['element']['#formatter'] == 'entity_reference_contact_form') {
+    if (is_array($variables['element']['0']) && !empty($variables['element']['0']['#title'])) {
+      $variables['label'] = $variables['element']['0']['#title'];
+    }
+  }
+}
